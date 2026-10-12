@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 470" width="920" height="470" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#000"/>
+    </marker>
+  </defs>
+  <rect width="920" height="470" fill="#ffffff"/>
+  <text x="180" y="30" text-anchor="middle" font-size="17" font-weight="bold">Client (client.py)</text>
+  <text x="500" y="30" text-anchor="middle" font-size="17" font-weight="bold">Server (server.py)</text>
+  <text x="790" y="30" text-anchor="middle" font-size="17" font-weight="bold">TCP/IP model</text>
+
+  <g fill="#f2f2f2" stroke="#000" stroke-width="1.5">
+    <rect x="40" y="50" width="280" height="80"/>
+    <rect x="360" y="50" width="280" height="80"/>
+    <rect x="40" y="165" width="280" height="80"/>
+    <rect x="360" y="165" width="280" height="80"/>
+    <rect x="40" y="280" width="280" height="80"/>
+    <rect x="360" y="280" width="280" height="80"/>
+  </g>
+  <g fill="#d9d9d9" stroke="#000" stroke-width="1.5">
+    <rect x="40" y="395" width="600" height="55"/>
+  </g>
+
+  <g font-size="14" text-anchor="middle">
+    <text x="180" y="78" font-weight="bold">Presentation layer</text>
+    <text x="180" y="98">chat/presentation.py</text>
+    <text x="180" y="116">reads input, prints output</text>
+    <text x="500" y="78" font-weight="bold">Presentation layer</text>
+    <text x="500" y="98">chat/presentation.py</text>
+    <text x="500" y="116">prints the server log</text>
+
+    <text x="180" y="193" font-weight="bold">Application layer</text>
+    <text x="180" y="213">chat/application.py</text>
+    <text x="180" y="231">builds and parses JSON messages</text>
+    <text x="500" y="193" font-weight="bold">Application layer</text>
+    <text x="500" y="213">chat/application.py</text>
+    <text x="500" y="231">validates messages, runs commands</text>
+
+    <text x="180" y="308" font-weight="bold">Transport layer</text>
+    <text x="180" y="328">chat/transport.py</text>
+    <text x="180" y="346">connect, send line, receive line</text>
+    <text x="500" y="308" font-weight="bold">Transport layer</text>
+    <text x="500" y="328">chat/transport.py</text>
+    <text x="500" y="346">listen, accept, send, receive</text>
+
+    <text x="340" y="418" font-weight="bold">Operating system network stack</text>
+    <text x="340" y="438">TCP, IP address 127.0.0.1, loopback interface</text>
+  </g>
+
+  <g stroke="#000" stroke-width="1.5" fill="none" marker-end="url(#a)">
+    <line x1="180" y1="130" x2="180" y2="165"/>
+    <line x1="180" y1="245" x2="180" y2="280"/>
+    <line x1="180" y1="360" x2="180" y2="395"/>
+    <line x1="500" y1="130" x2="500" y2="165"/>
+    <line x1="500" y1="245" x2="500" y2="280"/>
+    <line x1="500" y1="360" x2="500" y2="395"/>
+  </g>
+  <g stroke="#000" stroke-width="1.5" fill="none" marker-start="url(#a)" marker-end="url(#a)">
+    <line x1="320" y1="320" x2="360" y2="320"/>
+  </g>
+  <text x="340" y="272" text-anchor="middle" font-size="12">JSON lines</text>
+
+  <g fill="#ffffff" stroke="#000" stroke-width="1.5">
+    <rect x="680" y="50" width="220" height="195"/>
+    <rect x="680" y="280" width="220" height="80"/>
+    <rect x="680" y="395" width="220" height="55"/>
+  </g>
+  <g font-size="14" text-anchor="middle">
+    <text x="790" y="130" font-weight="bold">Application layer</text>
+    <text x="790" y="150">Presentation and application</text>
+    <text x="790" y="168">modules both belong here</text>
+    <text x="790" y="316" font-weight="bold">Transport layer</text>
+    <text x="790" y="336">TCP, used through sockets</text>
+    <text x="790" y="418" font-weight="bold">Internet and link layers</text>
+    <text x="790" y="438">IP and loopback</text>
+  </g>
+</svg>

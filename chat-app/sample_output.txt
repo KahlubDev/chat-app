@@ -1,0 +1,66 @@
+=== 1. Server offline: the client prints a clear error ===
+[client-test] ! Error: cannot reach the server at 127.0.0.1:5999. Start server.py first.
+
+=== 2. Start the server and three clients ===
+[server] 20:02:00 server listening on 127.0.0.1:5000
+[alice] * Connected to 127.0.0.1:5000 as alice. Type /help.
+[server] 20:02:01 alice connected from 127.0.0.1:41532
+[alice] [20:02:01] * Welcome alice. Online: alice
+[bob] * Connected to 127.0.0.1:5000 as bob. Type /help.
+[bob] [20:02:01] * Welcome bob. Online: alice, bob
+[alice] [20:02:01] * bob joined
+[server] 20:02:01 bob connected from 127.0.0.1:41540
+[alice] [20:02:02] * carol joined
+[carol] * Connected to 127.0.0.1:5000 as carol. Type /help.
+[carol] [20:02:02] * Welcome carol. Online: alice, bob, carol
+[server] 20:02:02 carol connected from 127.0.0.1:41552
+[bob] [20:02:02] * carol joined
+
+=== 3. Commands, messages, replies and broadcasts ===
+(alice types) /list
+[server] 20:02:03 alice sent command: /list
+[alice] [20:02:03] * Online: alice, bob, carol
+(alice types) hello everyone
+[server] 20:02:03 alice sent chat: hello everyone
+[alice] [20:02:03] ok: delivered to 2 other user(s)
+[bob] [20:02:03] alice: hello everyone
+[carol] [20:02:03] alice: hello everyone
+(bob types) hi alice, hi carol
+[server] 20:02:04 bob sent chat: hi alice, hi carol
+[alice] [20:02:04] bob: hi alice, hi carol
+[bob] [20:02:04] ok: delivered to 2 other user(s)
+[carol] [20:02:04] bob: hi alice, hi carol
+
+=== 4. Malformed message: the server replies with an error ===
+[raw-dave] received: {"type": "info", "sender": "server", "body": "Welcome dave. Online: alice, bob, carol, dave", "timestamp": "2026-10-12T20:02:04+00:00"}
+[raw-dave] sends: {this is not json
+[alice] [20:02:04] * dave joined
+[bob] [20:02:04] * dave joined
+[carol] [20:02:04] * dave joined
+[server] 20:02:04 dave connected from 127.0.0.1:41566
+[server] 20:02:04 malformed message from dave: message is not valid JSON
+[raw-dave] received: {"type": "error", "sender": "server", "body": "malformed message: message is not valid JSON", "timestamp": "2026-10-12T20:02:04+00:00"}
+[server] 20:02:04 dave sent command: /quit
+[raw-dave] received: {"type": "info", "sender": "server", "body": "Goodbye", "timestamp": "2026-10-12T20:02:04+00:00"}
+[server] 20:02:04 dave left with /quit
+[carol] [20:02:04] * dave left
+[bob] [20:02:04] * dave left
+[alice] [20:02:04] * dave left
+
+=== 5. Client disconnects without warning ===
+(carol process is killed)
+[server] 20:02:05 carol disconnected without warning
+[alice] [20:02:05] * carol left
+[bob] [20:02:05] * carol left
+
+=== 6. Clean disconnect with /quit ===
+(bob types) /quit
+[server] 20:02:06 bob sent command: /quit
+[server] 20:02:06 bob left with /quit
+[bob] [20:02:06] * Goodbye
+[bob] * Disconnected.
+[alice] [20:02:06] * bob left
+[server] 20:02:07 alice sent command: /quit
+[alice] [20:02:07] * Goodbye
+[server] 20:02:07 alice left with /quit
+[alice] * Disconnected.
